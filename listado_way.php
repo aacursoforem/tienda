@@ -10,16 +10,18 @@
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 			
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">	
-		
+<!-- TODO: El siguiente script está pendiente de poner en funcionamiento.
+		   Se pretende que tras unos segundos desaparezca el mensaje que se muestra sobre la tabla (lado izquierdo) donde se informa si se ha añadido, eliminado, actualizado de forma correcta un producto
+		   superior
 		<script type='text/javascript' src='http://code.jquery.com/jquery-1.10.1.js'></script>
 		<script type='text/javascript'>
-		$(window).load(function(){<!--  w w w.ja v  a2 s.co m-->
+		$(window).load(function(){<!--  w w w.ja v  a2 s.co m
 			$("#click").click(function() {
 				$("#success").html('Hello World!').removeClass("hide").hide().fadeIn("slow");
 			});
 		});
 		</script>	
-		
+		-->
 </head> 
 
 <body>
@@ -31,6 +33,8 @@
 		<div class="row" style="padding-bottom:10px;">
 			<div class="col-sm-6 text-left">
 			<?php
+			// En caso de que la llamada al fichero incluya una variable de nombre control,
+			// dependiendo del valor que tome ésta mostraremos uno u otro mensaje al usuario
 				if (isset($_REQUEST['control'])) {
 					$cartel = $_REQUEST['control'];
 					if ($cartel == 1) {
@@ -58,11 +62,7 @@
 	</div>
 	
 	
-	
-	
-	
-	
-		
+	<!-- Mostramos la cabecera de la tabla -->
 	<div class="container">
 	<table class="table table-striped text-center">
 	<thead class="thead-dark">
@@ -87,10 +87,12 @@
 	$sql = "SELECT * FROM productos" or die ("No ha sido posible dar el alta") or die ("No ha sido posible dar el alta") ;
 	// Ejecutamos la consulta y guardamos el resultSet que devuelve en la variable -$registros-)
 	$registros = mysqli_query($conexion, $sql);
+	// Con el resultSet guardado ya en la variable $registros, podemos cerrar la conexión a la BD
 	mysqli_close($conexion);
 	
 	// Recorremos el resultSet para ir extrayendo/mostrando los resultados devueltos
-	// Vamos guardando cada una de las filas del resultSet en la variable $reg 
+	// Vamos añadiendo a la celda de la tabla el dato tomado del correspondiente valor
+	// guardado en el variable $reg
 	while ( $reg = mysqli_fetch_array($registros) ) {
 		?>
 		<tr>

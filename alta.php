@@ -8,12 +8,6 @@
 <?php
 // Conectamos a la base de datos
 	$conexion = mysqli_connect("localhost", "root", "", "tienda") or die ("Error al conectar a la base de datos");
-	// Para que no haya problemas con las tildes y caracteres tipical Spain
-	//mysqli_set_charset("UTF8", $conexion);
-	//mysqli_query($conexion, "SET NAMES 'utf8'");
-	
-	// la siguiente instrucción imprime el contenido del array $_REQUEST por pantalla
-	// print_r($_REQUEST);
 	
 	// Cogemos los datos que nos llega desde el formulario
 	$nombre = $_REQUEST['nombre'];
@@ -31,6 +25,7 @@
 	// Mostramos un mensaje de todo OK al usuario
 	// echo "<h3>ALTA REALIZADA CON ÉXITO!!! CORRE Y CUÉNTASELO A TUS AMIGOS</h3>";
 
+	// Hacemos una redirección a la página listado_way.php con el parámetro control=1 que indica que se ha introducido sin problemas el nuevo producto en la base de datos
 	header("location:listado_way.php?control=1");
 
 ?>

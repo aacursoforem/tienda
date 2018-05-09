@@ -44,6 +44,7 @@
 	$sql = "SELECT * FROM productos" or die ("No ha sido posible dar el alta") or die ("No ha sido posible dar el alta") ;
 	// Ejecutamos la consulta y guardamos el resultSet que devuelve en la variable -$registros-)
 	$registros = mysqli_query($conexion, $sql);
+	// Cerramos la conexión a la base de datos
 	mysqli_close($conexion);
 	
 	// Recorremos el resultSet para ir extrayendo/mostrando los resultados devueltos
