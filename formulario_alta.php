@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8" />
+
 		<title>Alta de producto</title>
 		
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -31,7 +31,7 @@
 					<label for="nombre">Nombre del producto</label>
 					<input class="form-control" type="text" name="nombre" id="nombre" placeholder="Ingrese nombre" />
 				</div>
-				<div class="form-group row text-left">
+				<div class="form-group text-left">
 					<label for="categoria">Categoría del producto</label>
 					<input class="form-control" type="text" name="categoria" id="categoria" placeholder="Ingrese categoría" />
 				</div>
@@ -44,7 +44,7 @@
 					<input class="form-control" type="number" min="0" step="0.01" id="precio" name="precio" />
 				</div>
 				<div class="form-group text-center">
-					<button class="btn btn-primary" type="submit"><i class="fas fa-save fa-1x"></i> Aceptar</button>
+					<button class="btn btn-primary" type="submit"><i class="fas fa-save fa-1x"></i> Guardar</button>
 					<button class="btn btn-danger" type="reset"><i class="fas fa-ban fa-1x"></i> Cancelar</button>
 				</div>
 				</form>

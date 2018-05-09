@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Alta tienda</title>
+	<title>Modificación producto</title>
 
 </head> 
 <body>
@@ -16,22 +16,24 @@
 	// print_r($_REQUEST);
 	
 	// Cogemos los datos que nos llega desde el formulario
+	$codigo = $_REQUEST['codigo'];
 	$nombre = $_REQUEST['nombre'];
 	$categoria = $_REQUEST['categoria'];
 	$cantidad = $_REQUEST['cantidad'];
 	$precio = $_REQUEST['precio'];
 	
 	// Creamos la sentencia de acción SQL para guardar los datos recogidos por fomulario en la base de datos
-	$sql = "INSERT INTO productos (nombre, categoria, cantidad, precio) VALUES ('$nombre', '$categoria', $cantidad, $precio);" or die ("No ha sido posible dar el alta") ;
+	$sql = "UPDATE productos SET nombre='$nombre', categoria='$categoria', cantidad=$cantidad, precio=$precio WHERE codigo=$codigo;" or die ("No ha sido posible actualizar el producto") ;
 	
 	// Ejecutamos la sentencia de acción anterior
 	mysqli_query($conexion, $sql);
 	mysqli_close($conexion);
 	
 	// Mostramos un mensaje de todo OK al usuario
-	// echo "<h3>ALTA REALIZADA CON ÉXITO!!! CORRE Y CUÉNTASELO A TUS AMIGOS</h3>";
+	// echo "<h3>MODIFICACIÓN REALIZADA CON ÉXITO!!! CORRE Y CUÉNTASELO A TUS AMIGOS</h3>";
 
-	header("location:listado_way.php?control=1");
+	header("location:listado_way.php?control=3");
+	//echo'<p><a href="listado_way.php?control=3">Ir al listado</a></p>';
 
 ?>
 
