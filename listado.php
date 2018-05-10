@@ -41,7 +41,7 @@
 	$conexion = mysqli_connect("localhost", "root", "", "tienda") or die ("Error al conectar a la base de datos");
 	
 	// Preparamos la consulta a realizar. Una consulta de selección devuelve un resultSet 
-	$sql = "SELECT * FROM productos" or die ("No ha sido posible dar el alta") or die ("No ha sido posible dar el alta") ;
+	$sql = "SELECT * FROM productos" or die ("La consulta de productos devolvió un error") ;
 	// Ejecutamos la consulta y guardamos el resultSet que devuelve en la variable -$registros-)
 	$registros = mysqli_query($conexion, $sql);
 	// Cerramos la conexión a la base de datos
