@@ -2,23 +2,23 @@
 <html>
 	<head>
 
-		<title>Modificación de cliente</title>
+		<title>Modificación de usuario</title>
 		
 		<?php
 			include("cdn_local.php");
-		
 		?>
+
 	</head>
 	
 	<?php
-	print_r($_REQUEST);
+	//print_r($_REQUEST);
 	// Tomados de $_REQUEST el valor pasado con el valor del código del producto a modificar
-	$dni = $_REQUEST['dni'];
+	$id = $_REQUEST['id'];
 	// Conectamos a la base de datos
 	include("conexion.php");
 	
 	// Preparamos la sentencia que devolverá los datos del cliente cuyo dni es el pasado
-	$sql = "SELECT * FROM clientes WHERE dni='$dni'" or die("No existe el cliente en la base de datos");
+	$sql = "SELECT * FROM usuarios WHERE id=$id" or die("No existe el usuario en la base de datos");
 	// Ejecutamos la consulta obteniendo el vector $registro con el resultado 
 	$registro = mysqli_query($conexion, $sql);
 	// Del resultSet obtenido en la consulta, asignamos a $reg una fila de resultados como un array asociativo
@@ -27,10 +27,10 @@
 	//$reg = mysqli_fetch_row($registro);  // Obtener una fila de resultados como un array enumerado
 	
 	// Guardamos en distintas variables las partes del resultSet devuelvo como respuesta a nuestra consulta a la base de datos 
-	$dni = $reg['dni'];
+	$id = $reg['id'];
 	$nombre = $reg['nombre'];
-	$poblacion = $reg['poblacion'];	
-	$provincia = $reg['provincia'];
+	$contra = $reg['contra'];	
+	$tipo = $reg['tipo'];
 	
 	// Ya podemos cerrar la conexión con la base de datos
 	mysqli_close($conexion);
@@ -39,30 +39,39 @@
 	?>
 	<body>
 		<div class="jumbotron text-center">
-			<h1>Modificación de cliente</h1>
+			<h1>Modificación de usuario</h1>
 		</div>
 	<div class="container">
 		<div class="row"> <!-- 12 filas de división -->
 			<div class="col-sm-6 offset-sm-3 text-center">
-				<form method="get" action="modificar_cliente.php">
-				<div class="form-group text-left">
-					<label for="dni">DNI del cliente</label>
-					<input class="form-control" type="text" name="dni" id="dni" value="<?php echo $dni; ?>" readonly="readonly" />
-					<!-- En el input anterior en lugar de readonly se puede poner del tipo hidden (en cuyo caso deberíamos también eliminar el label que lo precede) -->
-				</div>
+				<form method="post" action="modificar_usuario.php">
+				
 				
 				<div class="form-group text-left">
-					<label for="nombre">Nombre del producto</label>
-					<input class="form-control" type="text" name="nombre" id="nombre" value="<?php echo $nombre; ?>" />
-				</div>
+						<label for="id">Id</label>
+						<input class="form-control" type="text" name="id" id="id" value="<?php echo $id; ?>" readonly="readonly" />
+					</div>
+				
 				<div class="form-group text-left">
-					<label for="poblacion">Población</label>
-					<input class="form-control" type="text" name="poblacion" id="poblacion" value="<?php echo $poblacion; ?>" />
-				</div>
+						<label for="user">Usuario</label>
+						<input class="form-control" type="text" name="user" id="user" value="<?php echo $nombre; ?>" />
+					</div>
+					
 				<div class="form-group text-left">
-					<label for="provincia">Provincia</label>
-					<input class="form-control" type="text" id="provincia" name="provincia" value="<?php echo $provincia; ?>"/> 
+					<label for="pass">Contraseña</label>
+					<input class="form-control" type="password" id="pass" name="pass" value="<?php echo $contra; ?>"/> 
 				</div>
+					
+				<div class="form-group text-left">
+					<label for="type">Tipo</label>
+					<select class="form-control" id="type" name="type" >
+						<option value="1" <?php if ($tipo == 1) { echo'selected'; } ?>>Administrador</option>
+						<option value="2" <?php if ($tipo == 2) { echo'selected'; } ?>>Invitado</option>
+						<option value="3" <?php if ($tipo == 3) { echo'selected'; } ?>>Usuario</option>
+					</select>						
+				</div>
+				
+				
 
 				<div class="form-group text-center">
 					<button class="btn btn-primary" type="submit"><i class="fas fa-save fa-1x"></i> Modificar</button>

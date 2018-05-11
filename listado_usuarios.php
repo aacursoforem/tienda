@@ -3,17 +3,16 @@
 <head>
 	<title>Listado de Clientes</title>
 	<meta charset="utf-8" /> 
+	
 	<?php
 		include("cdn_local.php");
-		
-		// include("cdns.php");
 	?>
 	
 </head> 
 
 <body>
 	<div class="jumbotron text-center">
-			<h1>Listado de clientes</h1>
+			<h1>Listado de usuarios</h1>
 	</div>
 	
 	<div class="container">
@@ -27,10 +26,12 @@
 					//echo'<p style="color:red">El valor de control es: '.$control.'</p>';
 					$mensaje =''; $tipoMensaje='success';
 					switch ($control)  {
-						case -1 : $mensaje='El DNI ya existe en la base de datos'; $tipoMensaje = 'danger';  break;
-						case 1 : $mensaje='Alta realizada con éxito'; $tipoMensaje = 'success';  break;
-						case 2 : $mensaje='Cliente eliminado correctamente'; $tipoMensaje = 'success';  break;
-						case 3 : $mensaje='Cliente actualizado correctamente';  $tipoMensaje = 'success'; break;				
+						case -1 : $mensaje='El usuario ya existe en la base de datos'; $tipoMensaje = 'danger';  break;
+						case 1 : $mensaje='Alta usuario realizada con éxito'; $tipoMensaje = 'success';  break;					
+						case 2 : $mensaje='Usuario eliminado correctamente'; $tipoMensaje = 'success';  break;
+						case 3 : $mensaje='Usuario actualizado correctamente';  $tipoMensaje = 'success'; break;
+						
+										
 					}
 					echo '<p class="alert alert-'.$tipoMensaje.'">'.$mensaje.'</p>';	
 				} 
@@ -38,7 +39,7 @@
 			</div>
 		
 			<div class="col-sm-6 text-right">
-				<a href="form_alta_cliente.php" class="btn btn-primary">Nuevo Cliente</a>
+				<a href="form_alta_usuario.php" class="btn btn-primary">Nuevo Usuario</a>
 				<a href="index.html" class="btn btn-secondary"><i class="fas fa-arrow-left fa-1x"></i> Panel de Gestión</a>
 			</div>		
 		</div>
@@ -50,10 +51,10 @@
 	<table class="table table-striped text-center">
 	<thead class="thead-dark">
 		<tr>
-			<th>DNI</th>
-			<th>Nombre</th>
-			<th>Población</th>			
-			<th>Provincia</th>
+			<th>Id</th>
+			<th>Usuario</th>
+			<th>Password</th>			
+			<th>Tipo</th>
 			<th>Modificar</th>
 			<th>Eliminar</th>
 		</tr>
@@ -61,10 +62,10 @@
 	<tbody>
 <?php
 	// Conectamos a la base de datos
-	include "conexion.php";	
+	include("conexion.php");	
 	
 	// Preparamos la consulta a realizar. Una consulta de selección devuelve un resultSet 
-	$sql = "SELECT * FROM clientes" or die ("Error buscando clientes");
+	$sql = "SELECT * FROM usuarios" or die ("Error buscando clientes");
 	// or die(mysqli_errno($conexion) . mysqli_error($conexion));
 	
 	// Ejecutamos la consulta y guardamos el resultSet que devuelve en la variable -$registros-)
@@ -75,15 +76,16 @@
 	// Recorremos el resultSet para ir extrayendo/mostrando los resultados devueltos
 	// Vamos añadiendo a la celda de la tabla el dato tomado del correspondiente valor
 	// guardado en el variable $reg
+	$tiposUsuario = array(1=>"Administrador", 2=>"Invitado", 3=>"Usuario");
 	while ( $reg = mysqli_fetch_array($registros) ) {
 		?>
 		<tr>
-			<th><?php echo $reg['dni']; ?> </th>
+			<th><?php echo $reg['id']; ?> </th>
 			<td><?php echo $reg['nombre']; ?> </td>
-			<td><?php echo $reg['poblacion'];?></td>			
-			<td><?php echo $reg['provincia']; ?></td>
-			<td><a href="form_mod_cliente.php?dni=<?php echo $reg['dni'];?>"><i class="fas fa-edit"></i></a> </td>
-			<td><a href="eliminar_cliente.php?dni=<?php echo $reg['dni'];?>"><i class="fas fa-trash-alt"></i></a> </td>
+			<td><?php echo $reg['contra'];?></td>			
+			<td><?php echo $tiposUsuario[$reg['tipo']]; ?></td>
+			<td><a href="form_mod_usuario.php?id=<?php echo $reg['id'];?>"><i class="fas fa-edit"></i></a> </td>
+			<td><a href="eliminar_usuario.php?id=<?php echo $reg['id'];?>"><i class="fas fa-trash-alt"></i></a> </td>
 		</tr>
 	<?php
 	}  // fin while

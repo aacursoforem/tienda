@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Modificación cliente</title>
+	<title>Modificación usuario</title>
 
 </head> 
 <body>
 <?php
 	// Conectamos a la base de datos
 	include("conexion.php");
-	
+		
+	//print_r($_POST);
 	// Cogemos los datos que nos llega desde el formulario
-	$dni = $_REQUEST['dni'];
-	$nombre = $_REQUEST['nombre'];
-	$poblacion = $_REQUEST['poblacion'];	
-	$provincia = $_REQUEST['provincia'];
+	$id = $_POST['id'];
+	$usuario = $_POST['user'];
+	$pass = $_POST['pass'];
+	$cifrada = md5($pass);
+	$tipo = $_POST['type'];
 	
 	// Creamos la sentencia de acción SQL para guardar los datos recogidos por fomulario en la base de datos
-	$sql = "UPDATE clientes SET nombre='$nombre', poblacion='$poblacion', provincia='$provincia' WHERE dni=$dni;" or die ("No ha sido posible actualizar el cliente") ;
+	$sql = "UPDATE usuarios SET nombre='$usuario', contra='$cifrada', tipo=$tipo WHERE id=$id;" or die ("No ha sido posible actualizar el dato") ;
 	
 	// Ejecutamos la sentencia de acción anterior
 	mysqli_query($conexion, $sql);
@@ -27,9 +29,9 @@
 	// echo "<h3>MODIFICACIÓN REALIZADA CON ÉXITO!!! CORRE Y CUÉNTASELO A TUS AMIGOS</h3>";
 
 	// Redireccionamos tras haber realizado la actualización del cliente en la BD
-	header("location:listado_clientes.php?control=3");
+	//header("location:listado_usuarios.php?control=3");
 	// Para pruebas, sustituimos la anterior redirección por un enlace equivalente
-	//echo'<p><a href="listado_clientes.php?control=3">Ir al listado</a></p>';
+	echo'<p><a href="listado_usuarios.php?control=3">Ir al listado</a></p>';
 
 ?>
 
