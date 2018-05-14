@@ -7,7 +7,8 @@
 <body>
 <?php
 	// Conectamos a la base de datos
-	$conexion = mysqli_connect("localhost", "root", "", "tienda") or die ("Error al conectar a la base de datos");
+	include("conexion.php");
+
 	
 	// Cogemos los datos que nos llega desde el formulario
 	$codigo = $_REQUEST['codigo'];
@@ -28,7 +29,7 @@
 	// echo "<h3>MODIFICACIÓN REALIZADA CON ÉXITO!!! CORRE Y CUÉNTASELO A TUS AMIGOS</h3>";
 
 	// Redireccionamos tras haber realizado la actualización del producto en la BD
-	header("location:listado_way.php?control=3");
+	header("location:listado_productos.php?control=3");
 	// Para pruebas, sustituimos la anterior redirección por un enlace equivalente
 	//echo'<p><a href="listado_way.php?control=3">Ir al listado</a></p>';
 

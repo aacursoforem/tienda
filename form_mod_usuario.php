@@ -65,17 +65,18 @@
 				<div class="form-group text-left">
 					<label for="type">Tipo</label>
 					<select class="form-control" id="type" name="type" >
-						<option value="1" <?php if ($tipo == 1) { echo'selected'; } ?>>Administrador</option>
-						<option value="2" <?php if ($tipo == 2) { echo'selected'; } ?>>Invitado</option>
-						<option value="3" <?php if ($tipo == 3) { echo'selected'; } ?>>Usuario</option>
+						<option value="1" <?php if ($tipo == 1) { echo'selected="selected"'; } ?>>Administrador</option>
+						<option value="2" <?php if ($tipo == 2) { echo'selected="selected"'; } ?>>Invitado</option>
+						<option value="3" <?php if ($tipo == 3) { echo'selected="selected"'; } ?>>Usuario</option>
 					</select>						
 				</div>
 				
 				
 
 				<div class="form-group text-center">
-					<button class="btn btn-primary" type="submit"><i class="fas fa-save fa-1x"></i> Modificar</button>
 					<button class="btn btn-danger" type="reset"><i class="fas fa-ban fa-1x"></i> Cancelar</button>
+					<button class="btn btn-primary" type="submit"><i class="fas fa-save fa-1x"></i> Modificar</button>
+					
 				</div>
 				</form>
 			</div>
