@@ -74,9 +74,11 @@
 				
 
 				<div class="form-group text-center">
-					<button class="btn btn-danger" type="reset"><i class="fas fa-ban fa-1x"></i> Cancelar</button>
-					<button class="btn btn-primary" type="submit"><i class="fas fa-save fa-1x"></i> Modificar</button>
 					
+					<!--
+					<button class="btn btn-danger" type="reset"><i class="fas fa-ban fa-1x"></i> Cancelar</button>-->
+					<a href="listado_usuarios.php" class="btn btn-primary" role="button"><i class="fas fa-arrow-left fa-1x"></i> Volver al listado</a>
+					<button class="btn btn-primary" type="submit"><i class="fas fa-save fa-1x"></i> Modificar</button>
 				</div>
 				</form>
 			</div>
